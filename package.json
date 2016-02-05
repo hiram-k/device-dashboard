@@ -1,0 +1,20 @@
+{
+  "name": "device-dashboard",
+  "version": "1.0.0",
+  "description": "IoT device dashboard",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc -p .",
+    "link": "browserify obj/main.js -o bundle.js --debug"
+  },
+  "author": "hiram-k",
+  "license": "Unlicense",
+  "dependencies": {
+    "immutable": "^3.7.6",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0"
+  }
+}
