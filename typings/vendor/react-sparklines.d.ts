@@ -15,6 +15,9 @@ declare module "react-sparklines"
     {
     }
     
+    export class SparklinesReferenceLine extends __React.Component<{type: string}, {}>
+    {
+    }
     export class Sparklines extends __React.Component<SparklinesProps, {}>
     {
     }

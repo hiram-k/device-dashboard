@@ -54,7 +54,8 @@ class DeviceSummary extends React.Component<{key?: string, device: DeviceSummary
         return (
             <div className ="device-summary">
                 <div className="device-sparkline">
-                    <ReactSparklines.Sparklines width="100" height="30" data={device.values} limit={20}>
+                    <ReactSparklines.Sparklines width={100} height={30} data={device.values} limit={20}>
+                        <ReactSparklines.SparklinesReferenceLine type="mean" />
                         <ReactSparklines.SparklinesLine style={{fill: "white", stroke: "none", fillOpacity: "1"}}/>
                     </ReactSparklines.Sparklines>
                 </div>
@@ -87,8 +88,8 @@ class RootView extends React.Component<{}, {s: RootViewState}>
         const devices = this.state.s.devices.map(d => {
             return <DeviceSummary key={d.name} device={d}/>
         });
-        return (<div id="root-wrapper">{devices}</div>)
+        return (<div id="root">{devices}</div>)
     }
 }
 
-ReactDOM.render(<RootView />, document.getElementsByTagName("body")[0]);
+ReactDOM.render(<RootView />, document.getElementById("root-wrapper"));
