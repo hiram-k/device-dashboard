@@ -6,8 +6,8 @@ declare module "react-sparklines"
     {
         data: number[];
         limit?: number;
-        width?: number;
-        height?: number;
+        width?: number | string;
+        height?: number | string;
         style?: any;    
     }
     

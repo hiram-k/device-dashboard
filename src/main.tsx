@@ -12,7 +12,7 @@ class DeviceSummaryState
     public update()
     {
         const v = this._values.last() + (Math.random() * 0.1 - 0.05);
-        const values = this._values.push(v).takeLast(300).toList();
+        const values = this._values.push(v).takeLast(100).toList();
         return new DeviceSummaryState(this._name, values);
     }
     public get name() { return this._name }
@@ -29,10 +29,15 @@ class RootViewState implements IRootViewState
     private _devices: Immutable.List<DeviceSummaryState>;
     constructor()
     {
-        this._devices = Immutable.List.of<DeviceSummaryState>(
+        this._devices = Immutable.List<DeviceSummaryState>([
             new DeviceSummaryState("hoge"),
-            new DeviceSummaryState("fuga")
-        );
+            new DeviceSummaryState("fuga"),
+            new DeviceSummaryState("piyo"),
+            new DeviceSummaryState("foo"),
+            new DeviceSummaryState("bar"),
+            new DeviceSummaryState("fizz"),
+            new DeviceSummaryState("buzz"),
+        ]);
     }
     public update()
     {
@@ -48,10 +53,14 @@ class DeviceSummary extends React.Component<{key?: string, device: DeviceSummary
         const device = this.props.device;
         return (
             <div className ="device-summary">
-                <div className="device-name">{device.name}</div>
-                <ReactSparklines.Sparklines data={device.values} limit={50}>
-                    <ReactSparklines.SparklinesLine style={{ stroke: "none", fill: "blue", fillOpacity: "1" }} />
-                </ReactSparklines.Sparklines>
+                <div className="device-sparkline">
+                    <ReactSparklines.Sparklines width="100" height="30" data={device.values} limit={20}>
+                        <ReactSparklines.SparklinesLine style={{fill: "white", stroke: "none", fillOpacity: "1"}}/>
+                    </ReactSparklines.Sparklines>
+                </div>
+                <div className="device-name">
+                    {device.name}
+                </div>
             </div>
         );
     }
@@ -78,8 +87,8 @@ class RootView extends React.Component<{}, {s: RootViewState}>
         const devices = this.state.s.devices.map(d => {
             return <DeviceSummary key={d.name} device={d}/>
         });
-        return (<div>{devices}</div>)
+        return (<div id="root-wrapper">{devices}</div>)
     }
 }
 
-ReactDOM.render(<RootView />, document.getElementById("root-wrapper"));
+ReactDOM.render(<RootView />, document.getElementsByTagName("body")[0]);

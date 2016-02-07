@@ -1,6 +1,35 @@
-div.root-wrapper
+body
 {
-  margin: 10px;
-  padding: 0;
+    background-color: #0E273C;
 }
 
+div#root-wrapper
+{
+    margin: 0 auto;
+    padding: 4mm;
+}
+
+div.device-summary
+{
+    width: 100%;
+    max-width: 500px;
+    height: 12mm;
+    margin: 2mm auto;
+    border-radius: 1mm;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    background-color: #A167A5;
+}
+
+div.device-summary div
+{
+    margin-left: 1mm;
+}
+
+div.device-name
+{
+    margin-left: 1mm;
+    font-size: 1.5em;
+    color: white;
+}
